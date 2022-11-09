@@ -1,0 +1,386 @@
+<mvc:View controllerName="sync.c201.grmanagement.controller.Detail" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" 
+xmlns:m="sap.m" xmlns:f="sap.f" xmlns:form="sap.ui.layout.form" xmlns="sap.uxap" xmlns:l="sap.ui.layout">
+    <ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="true" alwaysShowContentHeader="false" preserveHeaderStateOnScroll="false" headerContentPinnable="true" isChildPage="true" upperCaseAnchorBar="false">
+        
+        <headerTitle>
+            <ObjectPageDynamicHeaderTitle>
+                <expandedHeading>
+                    <m:VBox>
+                        <m:Title text="물품 창고 배치" wrapping="true" />
+                         <!-- <m:ObjectMarker type="Favorite" class="sapUiTinyMarginBegin" /> -->
+                            <m:VBox>
+                                <m:Label text="Today Date" />
+                                    <m:DatePicker
+                                        dateValue="{detail>/today}"
+                                        displayFormat="short"
+                                        change="handleChange"
+                                        class="sapUiSmallMarginBottom"/>
+                            </m:VBox>
+                            <m:HBox>
+                                <m:Label text="부서 코드 :  " />
+                                <m:Label text=" PUR" />
+                            </m:HBox>
+                            <m:HBox>
+                                <m:Label text="부서 명 :  " />
+                                <m:Label text=" 구매팀" />
+                            </m:HBox>
+                    </m:VBox>
+                </expandedHeading>
+                <snappedHeading>
+                    <m:FlexBox fitContainer="true" alignItems="Center">
+                        <m:Title text="물품 창고 배치 Detail" wrapping="true" />
+                    </m:FlexBox>
+                </snappedHeading>
+            </ObjectPageDynamicHeaderTitle>
+             
+        </headerTitle>
+       
+        <headerContent>
+            <m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch" />
+        </headerContent>
+
+        <sections>
+            <ObjectPageSection title="GR Information">
+                <subSections>
+                    <ObjectPageSubSection>
+                    <blocks>
+                        <m:VBox class="sapUiSmallMargin">
+                            <form:Form id="FormDisplayColumn_oneGroup"
+                                editable="true">
+                                <form:title>
+                                    <core:Title text="GR Information" />
+                                </form:title>
+                                    <form:layout>
+                                        <form:ResponsiveGridLayout
+                                            labelSpanXL="4"
+                                            labelSpanL="4"
+                                            labelSpanM="4"
+                                            labelSpanS="12"
+                                            adjustLabelSpan="false"
+                                            emptySpanXL="0"
+                                            emptySpanL="0"
+                                            emptySpanM="0"
+                                            emptySpanS="0"
+                                            columnsXL="3"
+                                            columnsL="2"
+                                            columnsM="2"
+                                            singleContainerFullSize="false" />
+                                    </form:layout>
+                                <form:formContainers>
+                                    <form:FormContainer>
+                                        <form:formElements>
+                                            <form:FormElement label="지점코드">
+                                                <form:fields>
+                                                    <m:ObjectIdentifier title="{detail>/GRdataSet/Plant}"/>
+                                                </form:fields>
+                                            </form:FormElement>
+                                            <form:FormElement label="PO번호">
+                                                <form:fields>
+                                                    <m:ObjectIdentifier title="{detail>/GRdataSet/Pono}" />
+                                                </form:fields>
+                                            </form:FormElement>
+                                            <form:FormElement label="품목번호">
+                                                <form:fields>
+                                                    <m:ObjectIdentifier title="{detail>/GRdataSet/Seqno}" />
+                                                </form:fields>
+                                            </form:FormElement>
+                                            <form:FormElement label="PO날짜">
+                                                <form:fields>
+                                                    <m:ObjectIdentifier title="{
+                                                path: 'detail>/GRdataSet/Podate',
+                                                type: 'sap.ui.model.type.Date'
+                                            }" />
+                                                </form:fields>
+                                            </form:FormElement>
+                                            <form:FormElement label="납기요청일">
+                                                <form:fields>
+                                                    <m:ObjectIdentifier title="{
+                                                path: 'detail>/GRdataSet/Podate',
+                                                type: 'sap.ui.model.type.Date'
+                                            }" />
+                                                </form:fields>
+                                            </form:FormElement>
+                                            <form:FormElement label="요청부서코드">
+                                                <form:fields>
+                                                    <m:ObjectIdentifier title="{detail>/GRdataSet/Depid}" />
+                                                </form:fields>
+                                            </form:FormElement>
+                                        </form:formElements>
+                                    </form:FormContainer>
+                                </form:formContainers>        
+                                <form:formContainers>
+                                    <form:FormContainer>
+                                        <form:formElements>
+                                            <form:FormElement label="제품ID">
+                                                <form:fields>
+                                                    <m:ObjectIdentifier title="{detail>/GRdataSet/Prodid}"/>
+                                                    <!-- <m:Text text="{detail>/GRdataSet/Prodid}"/> -->
+                                                </form:fields>
+                                            </form:FormElement>
+                                            <form:FormElement label="요청주문수량">
+                                                <form:fields>
+                                                    <m:ObjectIdentifier title="{detail>/GRdataSet/Tpurq}" />
+                                                </form:fields>
+                                            </form:FormElement>
+                                            <form:FormElement label="입고 수량">
+                                                <form:fields>
+                                                    <m:ObjectIdentifier title="{detail>/GRdataSet/Grprodq}"  />
+                                                </form:fields>
+                                            </form:FormElement>
+                                            <form:FormElement label="입고 날짜">
+                                                <form:fields>
+                                                    <m:ObjectIdentifier title="{
+                                                path: 'detail>/GRdataSet/Grdate',
+                                                type: 'sap.ui.model.type.Date'
+                                            }"/>
+                                                </form:fields>
+                                            </form:FormElement>
+                                            <form:FormElement label="공급업체">
+                                                <form:fields>
+                                                    <m:ObjectIdentifier title="{detail>/GRdataSet/Bpid}"/>
+                                                </form:fields>
+                                            </form:FormElement>
+                                            <form:FormElement label="업무담당자">
+                                                <form:fields>
+                                                    <m:ObjectIdentifier title="{detail>/GRdataSet/Picid}" />
+                                                </form:fields>
+                                            </form:FormElement>
+                                        </form:formElements>
+                                    </form:FormContainer>
+                                </form:formContainers>
+                            </form:Form>
+                        </m:VBox>
+                   
+                  </blocks>
+
+                  </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+
+            <ObjectPageSection title="물품 창고 배치">
+                <subSections>
+                    <ObjectPageSubSection>
+                        <blocks>
+                        	<m:VBox class="sapUiSmallMargin">
+                                <form:Form id="FormDisplay480_Trial"
+                                        editable="true">
+                                        <form:layout>
+                                            <form:ResponsiveGridLayout
+                                                labelSpanXL="4"
+                                                labelSpanL="4"
+                                                labelSpanM="4"
+                                                labelSpanS="12"
+                                                adjustLabelSpan="false"
+                                                emptySpanXL="0"
+                                                emptySpanL="0"
+                                                emptySpanM="0"
+                                                emptySpanS="0"
+                                                columnsXL="3"
+                                                columnsL="2"
+                                                columnsM="2"
+                                                singleContainerFullSize="false" />
+                                        </form:layout>
+                                        <form:formContainers>
+                                            <form:FormContainer>
+                                                <form:formElements>
+                                                    <form:FormElement label="부서코드">
+                                                        <form:fields>
+                                                            <m:ComboBox
+                                                                id="depidInput"
+                                                                editable="false"
+                                                                selectedKey="{detail>/stroage/department}"
+                                                                placeholder="부서를 입력하세요."
+                                                                showSecondaryValues="true"
+                                                                change="onDepartmentChange">
+                                                                <m:items>
+                                                                    <core:ListItem 
+                                                                        key="JFAC" 
+                                                                        text="제주시설팀"
+                                                                        additionalText="JFAC"/>
+                                                                    <core:ListItem 
+                                                                        key="JFOD" 
+                                                                        text="제주식음료팀"
+                                                                        additionalText="JFOD"/>
+                                                                    <core:ListItem 
+                                                                        key="JMAT" 
+                                                                        text="제주비품팀"
+                                                                        additionalText="JMAT"/>
+                                                                    <core:ListItem 
+                                                                        key="SFAC" 
+                                                                        text="서울시설팀"
+                                                                        additionalText="SFAC"/>
+                                                                    <core:ListItem 
+                                                                        key="SFOD" 
+                                                                        text="서울식음료팀"
+                                                                        additionalText="SFOD"/>
+                                                                    <core:ListItem 
+                                                                        key="SMAT" 
+                                                                        text="서울비품팀"
+                                                                        additionalText="SMAT"/>
+                                                                </m:items>
+                                                            </m:ComboBox>
+                                                        </form:fields>
+                                                    </form:FormElement>
+                                                </form:formElements>
+                                            </form:FormContainer>
+                                            <form:FormContainer>
+                                                <form:formElements>
+                                                    <form:FormElement label="비품 3층">
+                                                        <form:fields>
+                                                            <m:Input  id="f3" 
+                                                            value="{detail>/stroage/f3}"
+                                                            editable="{= 
+                                                                ${detail>/stroage/department} === 'JMAT' || 
+                                                                ${detail>/stroage/department} === 'SMAT'
+                                                           }"/>
+                                                        </form:fields>
+                                                    </form:FormElement>
+                                                    <form:FormElement label="비품 6층" >
+                                                        <form:fields>
+                                                            <m:Input  id="f6" 
+                                                            value="{detail>/stroage/f6}"
+                                                            editable="{= 
+                                                                ${detail>/stroage/department} === 'JMAT' || 
+                                                                ${detail>/stroage/department} === 'SMAT'
+                                                           }"/>
+                                                        </form:fields>
+                                                    </form:FormElement>
+                                                    <form:FormElement label="비품 9층" >
+                                                        <form:fields>
+                                                            <m:Input  id="f9" 
+                                                            value="{detail>/stroage/f9}"
+                                                            editable="{= 
+                                                                ${detail>/stroage/department} === 'JMAT' || 
+                                                                ${detail>/stroage/department} === 'SMAT'
+                                                           }"/>
+                                                        </form:fields>
+                                                    </form:FormElement>
+                                                    <form:FormElement label="식음료 SR" >
+                                                        <form:fields>
+                                                            <m:Input  id="sr" 
+                                                            value="{detail>/stroage/sr}"
+                                                            editable="{= 
+                                                                ${detail>/stroage/department} === 'JFOD' || 
+                                                                ${detail>/stroage/department} === 'SFOD'
+                                                           }"/>
+                                                        </form:fields>
+                                                    </form:FormElement>
+                                                    <form:FormElement label="식음료 SF" >
+                                                        <form:fields>
+                                                            <m:Input  id="sf" 
+                                                            value="{detail>/stroage/sf}"
+                                                            editable="{= 
+                                                                ${detail>/stroage/department} === 'JFOD' || 
+                                                                ${detail>/stroage/department} === 'SFOD'
+                                                           }"/>
+                                                        </form:fields>
+                                                    </form:FormElement>
+                                                    <form:FormElement label="식음료 SN" >
+                                                        <form:fields>
+                                                           <m:Input  id="sn" 
+                                                            value="{detail>/stroage/sn}"
+                                                            editable="{= 
+                                                                ${detail>/stroage/department} === 'JFOD' || 
+                                                                ${detail>/stroage/department} === 'SFOD'
+                                                           }"/>
+                                                        </form:fields>
+                                                    </form:FormElement>
+                                                    <form:FormElement label="시설 B2" >
+                                                        <form:fields>
+                                                            <m:Input  id="b2" 
+                                                            value="{detail>/stroage/b2}"
+                                                            editable="{= 
+                                                                ${detail>/stroage/department} === 'JFAC' || 
+                                                                ${detail>/stroage/department} === 'SFAC'
+                                                           }"/>
+                                                        </form:fields>
+                                                    </form:FormElement>
+                                                </form:formElements>
+                                            </form:FormContainer>
+                                        </form:formContainers>
+                                    </form:Form>
+                                    <m:Button text="저장" press="onSave"/>
+                                </m:VBox>
+                            <!-- <m:Text id="headerKey" text="물품 창고 배치" />
+
+                            <m:VBox>
+                            <m:ComboBox
+                                    id="depidInput"
+                                    selectedKey="{Main>/sSearchDepid}"
+                                    placeholder="부서를 입력하세요."
+                                    showSecondaryValues="true">
+                                    <m:items>
+                                        <core:ListItem 
+                                            key="JFAC" 
+                                            text="제주시설팀"
+                                            additionalText="JFAC"/>
+                                        <core:ListItem 
+                                            key="JFOD" 
+                                            text="제주식음료팀"
+                                            additionalText="JFOD"/>
+                                        <core:ListItem 
+                                            key="JMAT" 
+                                            text="제주비품팀"
+                                            additionalText="JMAT"/>
+                                        <core:ListItem 
+                                            key="SFAC" 
+                                            text="서울시설팀"
+                                            additionalText="SFAC"/>
+                                        <core:ListItem 
+                                            key="SFOD" 
+                                            text="서울식음료팀"
+                                            additionalText="SFOD"/>
+                                        <core:ListItem 
+                                            key="SMAT" 
+                                            text="서울비품팀"
+                                            additionalText="SMAT"/>
+                                            
+                                    </m:items>
+                                </m:ComboBox>
+                                <m:Text  text="창고위치" />
+                                <m:Input
+                                    id="f3"
+                                    value="{Main>/sSearchPono}"
+                                    placeholder="배치 수량을 입력하세요.">
+                                </m:Input>
+                                <m:Input
+                                    id="f6"
+                                    value="{Main>/sSearchPono}"
+                                    placeholder="배치 수량을 입력하세요.">
+                                </m:Input>
+                                <m:Input
+                                    id="f9"
+                                    value="{Main>/sSearchPono}"
+                                    placeholder="배치 수량을 입력하세요.">
+                                </m:Input>
+                                <m:Input
+                                    id="sr"
+                                    value="{Main>/sSearchPono}"
+                                    placeholder="배치 수량을 입력하세요.">
+                                </m:Input>
+                                <m:Input
+                                    id="sn"
+                                    value="{Main>/sSearchPono}"
+                                    placeholder="배치 수량을 입력하세요.">
+                                </m:Input>
+                                <m:Input
+                                    id="sf"
+                                    value="{Main>/sSearchPono}"
+                                    placeholder="배치 수량을 입력하세요.">
+                                </m:Input>
+                                <m:Input
+                                    id="b2"
+                                    value="{Main>/sSearchPono}"
+                                    placeholder="배치 수량을 입력하세요.">
+                                </m:Input>
+                           </m:VBox>  -->
+                        </blocks>
+                        
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+        </sections>
+    </ObjectPageLayout>
+</mvc:View>
+
+

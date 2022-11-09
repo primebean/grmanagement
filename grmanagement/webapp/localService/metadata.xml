@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZGWC2MM1007_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="GRdata" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Plant"/>
+                    <PropertyRef Name="Pono"/>
+                    <PropertyRef Name="Seqno"/>
+                </Key>
+                <Property Name="Plant" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="지점 코드" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Pono" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="PO번호" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Seqno" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="품목 번호" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Depid" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="부서 ID" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Prno" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="PR 번호" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Podate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="PO요청일" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Prodid" Type="Edm.String" MaxLength="5" sap:unicode="false" sap:label="제품 ID" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Tpurq" Type="Edm.Decimal" Precision="13" Scale="0" sap:unicode="false" sap:unit="Produnit" sap:label="주문 수량" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Produnit" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="제품 단위" sap:creatable="false" sap:updatable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="Poprce" Type="Edm.Decimal" Precision="16" Scale="3" sap:unicode="false" sap:unit="Pocuky" sap:label="주문 금액" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Pocuky" Type="Edm.String" MaxLength="5" sap:unicode="false" sap:label="주문 금액 통화키" sap:creatable="false" sap:updatable="false" sap:semantics="currency-code"/>
+                <Property Name="Drqdate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="납기 요청일" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Grdate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="입고날짜" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Grstat" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="입고 상태" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Grprodq" Type="Edm.String" MaxLength="13" sap:unicode="false" sap:unit="Produnit" sap:label="입고 수량" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Picid" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:label="업무 담당자" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Bpid" Type="Edm.String" MaxLength="5" sap:unicode="false" sap:label="공급업체 ID" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <EntityType Name="GRdistribution" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Plant"/>
+                    <PropertyRef Name="Prodid"/>
+                    <PropertyRef Name="Strid"/>
+                </Key>
+                <Property Name="Plant" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="지점 코드" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Prodid" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="제품 ID" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Strid" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="창고 ID" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Strlo" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="창고 위치" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Tprodq" Type="Edm.Decimal" Precision="13" Scale="0" sap:unicode="false" sap:unit="Produnit" sap:label="총 재고 수량" sap:creatable="false"/>
+                <Property Name="Safemat" Type="Edm.Decimal" Precision="13" Scale="0" sap:unicode="false" sap:unit="Produnit" sap:label="안전재고" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Avamat" Type="Edm.Decimal" Precision="13" Scale="0" sap:unicode="false" sap:unit="Produnit" sap:label="가용재고" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Produnit" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="제품 단위" sap:creatable="false" sap:updatable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="Grdate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="입고날짜" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <EntityContainer Name="ZGWC2MM1007_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="GRdataSet" EntityType="ZGWC2MM1007_SRV.GRdata" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="GRdistributionSet" EntityType="ZGWC2MM1007_SRV.GRdistribution" sap:creatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <atom:link rel="self" href="http://edu.bgis.co.kr:8001/sap/opu/odata/sap/ZGWC2MM1007_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://edu.bgis.co.kr:8001/sap/opu/odata/sap/ZGWC2MM1007_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

@@ -1,0 +1,147 @@
+<mvc:View controllerName="sync.c201.grmanagement.controller.Main" 
+          xmlns:mvc="sap.ui.core.mvc" 
+          xmlns:l="sap.ui.layout"
+          xmlns:core="sap.ui.core"
+          xmlns="sap.m"
+          xmlns:f="sap.f"
+          xmlns:fb="sap.ui.comp.filterbar"
+          xmlns:svm="sap.ui.comp.smartvariants">
+
+    <f:DynamicPage toggleHeaderOnTitleClick="false">
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title text="GR 입고 관리" />
+                </f:heading>
+            </f:DynamicPageTitle>
+        </f:title>
+
+        <f:content>
+            <VBox fitContainer="true">
+<!-- 
+            <l:VerticalLayout class="sapUiContentPadding" width="30%"> -->
+                	<fb:FilterBar id="filterbar" persistencyKey="myPersKey" useToolbar="true" >
+							<fb:filterItems>
+								<fb:FilterItem name="Plant" label="지점코드">
+									<fb:control>
+										<ComboBox
+											id="plantInput"
+											selectedKey="{Main>/sSearchPlant}"
+											placeholder="지점을 입력하세요."
+											showSecondaryValues="true">
+											<items>
+												 <core:ListItem 
+													key="S" 
+													text="서울지점"
+													additionalText="S"/>
+												<core:ListItem 
+													key="J" 
+													text="제주지점"
+													additionalText="J"/>
+											</items>
+										</ComboBox>
+									</fb:control>
+								</fb:FilterItem>
+								<fb:FilterItem name="Pono" label="Po번호">
+									<fb:control>
+										<Input
+											id="ponoInput"
+											value="{Main>/sSearchPono}"
+											placeholder="PO번호를 입력하세요.">
+										</Input>
+									</fb:control>
+								</fb:FilterItem>
+								<fb:FilterItem name="Seqno" label="품목번호">
+									<fb:control>
+										<ComboBox
+											id="seqnoInput"
+											selectedKey="{Main>/sSearchSeqno}"
+											placeholder="품목번호를 입력하세요."
+											showSecondaryValues="true">
+											<items>
+												 <core:ListItem 
+													key="100" 
+													text="100번"/>
+												 <core:ListItem 
+													key="200" 
+													text="200번"/>
+													 <core:ListItem 
+													key="300" 
+													text="300번"/>
+													 <core:ListItem 
+													key="400" 
+													text="400번"/>
+													 <core:ListItem 
+													key="500" 
+													text="500번"/>
+													 <core:ListItem 
+													key="600" 
+													text="600번"/>
+													 <core:ListItem 
+													key="700" 
+													text="700번"/>
+													 <core:ListItem 
+													key="800" 
+													text="800번"/>
+													 <core:ListItem 
+													key="900" 
+													text="900번"/>
+													 <core:ListItem 
+													key="100" 
+													text="100번"/>
+											</items>
+										</ComboBox>
+								    </fb:control>
+								</fb:FilterItem>
+							</fb:filterItems>
+							<Button 
+                                        text="검색"
+                                        press="onSearch">
+                            </Button>
+						</fb:FilterBar>
+            <!-- </l:VerticalLayout> -->
+                <Table id="GRTable" inset="false" items="{Main>/oTableData}" class="sapFDynamicPageAlignContent" width="auto">
+                    <columns>
+                        <Column width="12em">
+                            <Text text="지점코드" />
+                        </Column>
+                        <Column width="12em">
+                            <Text text="PO번호" />
+                        </Column>
+                        <Column width="12em">
+                            <Text text="품목번호" />
+                        </Column>
+                         <Column width="12em">
+                            <Text text="제품ID" />
+                        </Column>
+                        <Column width="12em">
+                            <Text text="PO요청일" />
+                        </Column>
+                         <Column width="12em">
+                            <Text text="입고날짜" />
+                        </Column>
+                       
+                    </columns>
+                    <items>
+                        <ColumnListItem type="Navigation" press=".onListItemPress">
+                            <cells>
+                                <ObjectIdentifier title="{Main>Plant}" />
+                                <ObjectIdentifier title="{Main>Pono}" />
+                                <ObjectIdentifier title="{Main>Seqno}" />
+                                <ObjectIdentifier title="{Main>Prodid}" />
+                                <ObjectIdentifier title="{
+                                    path: 'Main>Podate',
+                                    type: 'sap.ui.model.type.Date'
+                                }" />
+                                <ObjectIdentifier title="{
+                                    path: 'Main>Grdate',
+                                    type: 'sap.ui.model.type.Date'
+                                }" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </VBox>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>
